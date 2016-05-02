@@ -9,7 +9,6 @@ import time
 
 batch_size = 100
 test_size = 256
-WORK_DIRECTORY = 'data'
 IMAGE_SIZE = 30
 NUM_CHANNELS = 1
 PIXEL_DEPTH = 255
@@ -83,7 +82,7 @@ def extract_data(sess, num_images):
     return image_list
 
 
-def write_data(sess, num)
+#def write_data(sess, num)
 
 
 sess= tf.Session();
@@ -138,5 +137,6 @@ with tf.Session() as sess:
             sess.run(train_op, feed_dict={X: trX[start:end], Y: trY[start:end]})
         global_step.assign(i).eval() # set and update(eval) global_step with index, i
         saver.save(sess, ckpt_dir + "/model.ckpt", global_step=global_step)
-        test_result, act_cost = sess.run([predict_op, cost], feed_dict={X: teX[start:end], 
-        print("cost durign epoch " + `i` + "is ", act_cost)        
+
+        test_result, act_cost = sess.run([predict_op, cost], feed_dict={X: teX, Y: teY})
+        print("cost durign epoch " + `i` + "is ", act_cost)
